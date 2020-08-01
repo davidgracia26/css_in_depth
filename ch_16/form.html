@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>The Yolk Factory</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+    <form>
+        <label for="trip">Tell us about your first trip to the zoo:</label>
+        <textarea id="trip" name="about-my-trip" rows="5"></textarea>
+        <button type="submit" id="submit-button">Save</button>
+    </form>
+    <script>
+        var input = document.getElementById('trip');
+        var button = document.getElementById('submit-button');
+
+        var timeout = null;
+
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            button.classList.add('is-loading');
+            button.disabled = true;
+            input.disabled = true;
+        });
+
+        input.addEventListener('keyup', () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                button.classList.add('shake');
+            }, 1000)
+        })
+        button.addEventListener('animationend', () => {
+            button.classList.remove('shake')
+        })
+    </script>
+</body>
+
+</html>
